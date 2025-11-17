@@ -80,8 +80,8 @@ function slugifyCategory(raw?: string): string | null {
 const CATEGORY_LOGO_MAP: Record<string, string> = {
   'restaurante': '/logos/restaurantes.svg',
   'restaurantes': '/logos/restaurantes.svg',
-  'casinos': '/logos/Casinos.svg',
-  'minimarket': '/logos/MiniMarket.svg',
+  'casinos': '/logos/casinos.svg',
+  'minimarket': '/logos/minimarket.svg',
   'patio de comida': '/logos/patio-de-comida.svg',
   'puntos verdes': '/logos/puntos-verdes.svg',
   'puntos azules': '/logos/puntos-azules.svg',
@@ -116,7 +116,15 @@ function buildLogoCandidates(name: string, category?: string): string[] {
   cands.push('/logo.svg', '/logo.png');
   // Deduplicate and URI-encode candidate paths so filenames with spaces work correctly
   const uniq = Array.from(new Set(cands));
-  return uniq.map(p => encodeURI(p));
+  const base = (import.meta && (import.meta as any).env && (import.meta as any).env.BASE_URL) ? (import.meta as any).env.BASE_URL : '/';
+  return uniq.map(p => {
+    const clean = encodeURI(p);
+    // If path is absolute (starts with /), prefix with Vite's BASE_URL so paths work on GitHub Pages
+    if (clean.startsWith('/')) {
+      return `${base.replace(/\/?$/, '/')}${clean.replace(/^\//, '')}`;
+    }
+    return clean;
+  });
 }
 
 // Logo background removed as requested
