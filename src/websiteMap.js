@@ -34,7 +34,7 @@ export const WEBSITE_MAP = {
   'china-wok': 'https://www.chinawok.cl/pedir?utm_source=GoogleAds&utm_medium=search&utm_campaign=Trafico&gad_source=1&gad_campaignid=23201521350&gbraid=0AAAAApJjfbjvIE3zCGIf5EEUAKZapbops&gclid=Cj0KCQiAiebIBhDmARIsAE8PGNKlZWENB7dVto7zzl_w42HrFkgWdJWro1TCZ2Znp-kxtIOrfV4VOSwaAphnEALw_wcB',
   'chilis': 'https://www.chilis.cl/',
   // nota: se omite la clave larga explicativa de chilis
-  'erbi': 'https://www.instagram.com/erbi.supermercados/?hl=es',
+  'erbi': 'https://erbi.cl/',
   'happy-day-waffles': 'https://happydayswaffles.cl/',
   'juan-maestro': 'https://www.juanmaestro.cl',
   'jumbo': 'https://www.jumbo.cl',
@@ -56,7 +56,7 @@ export const WEBSITE_MAP = {
   's10': 'https://www.super10.cl/',
   'santa-isabel': 'https://www.santaisabel.cl',
   'savory': 'https://www.savory.cl',
-  'spid': 'https://www.spid.cl',
+  'spid': 'https://hc-mf-container-cl-spid.ecomm.cencosud.com/',
   'stop-cafe': 'https://www.google.com/search?q=stop+cafe+chile+sitio+oficial',
   'sushi-blues': 'https://www.google.com/search?q=sushi+blues+chile+sitio+oficial',
   'taco-bell': 'https://www.tacobell.cl',
