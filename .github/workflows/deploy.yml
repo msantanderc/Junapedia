@@ -11,6 +11,9 @@ permissions:
 jobs:
   build-and-deploy:
     runs-on: ubuntu-latest
+    env:
+      VITE_SUPABASE_URL: ${{ secrets.SUPABASE_URL }}
+      VITE_SUPABASE_ANON_KEY: ${{ secrets.SUPABASE_ANON_KEY }}
     steps:
       - name: Checkout
         uses: actions/checkout@v4
@@ -29,7 +32,14 @@ jobs:
             npm install
           fi
       - name: Build
-        run: npm run build
+        run: |
+          if [ -z "$VITE_SUPABASE_URL" ] || [ -z "$VITE_SUPABASE_ANON_KEY" ]; then
+            echo "ERROR: Supabase env vars missing. Set SUPABASE_URL and SUPABASE_ANON_KEY in repository secrets." >&2
+            exit 1
+          fi
+          echo "Supabase URL length: ${#VITE_SUPABASE_URL}"
+          echo "Anon key length: ${#VITE_SUPABASE_ANON_KEY}" 
+          npm run build
       - name: Deploy to gh-pages
         uses: peaceiris/actions-gh-pages@v3
         with:

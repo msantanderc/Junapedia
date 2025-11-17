@@ -44,6 +44,15 @@ The Vite config sets `base: '/Junapedia/'` in production so assets resolve under
 ### 2. Push to `main`
 Any push to `main` triggers the workflow to build and publish `dist` to the `gh-pages` branch.
 
+### 2.1 Supabase Environment in CI
+Add GitHub Actions secrets so the static build embeds your Supabase connection:
+
+1. Repository Settings → Secrets and variables → Actions → New repository secret.
+2. Add `SUPABASE_URL` = your project URL (e.g. `https://xxxx.supabase.co`).
+3. Add `SUPABASE_ANON_KEY` = your anon public key.
+
+The deploy workflow maps these to `VITE_SUPABASE_URL` and `VITE_SUPABASE_ANON_KEY` at build time. Without them the page will show no stores.
+
 ### 3. Enable Pages
 In GitHub repo settings:
 1. Go to Settings → Pages.
@@ -80,3 +89,4 @@ Add a license section here if you plan to open source.
 - Do NOT commit service role keys. Only the anon key belongs in client env vars.
 - Fallback website links perform Google searches when official domains are unknown.
 - GitHub Pages: ensure you access the site with the trailing `/Junapedia/` path during initial DNS propagation.
+ - Empty store list usually means missing Supabase env vars in build; verify lengths in deploy log.
