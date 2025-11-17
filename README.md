@@ -35,6 +35,28 @@ npm run dev
 ```
 Open http://localhost:3000
 
+## Deploy to GitHub Pages
+This project is configured to deploy automatically to GitHub Pages using a workflow at `.github/workflows/deploy.yml`.
+
+### 1. Ensure Vite Base Path
+The Vite config sets `base: '/Junapedia/'` in production so assets resolve under the repository path.
+
+### 2. Push to `main`
+Any push to `main` triggers the workflow to build and publish `dist` to the `gh-pages` branch.
+
+### 3. Enable Pages
+In GitHub repo settings:
+1. Go to Settings → Pages.
+2. Select `gh-pages` branch (root) and save.
+3. After a few minutes the site will be live at:
+	`https://<your-username>.github.io/Junapedia/`
+
+### 4. Manual Trigger
+You can also trigger the workflow manually under the Actions tab ("Deploy GitHub Pages" → "Run workflow").
+
+### 5. Clearing Deploy History
+The action uses `force_orphan: true` to keep the `gh-pages` branch clean. If you need history, remove that option.
+
 ## GitHub Setup (Quick)
 ```bash
 git init
@@ -57,3 +79,4 @@ Add a license section here if you plan to open source.
 ## Notes
 - Do NOT commit service role keys. Only the anon key belongs in client env vars.
 - Fallback website links perform Google searches when official domains are unknown.
+- GitHub Pages: ensure you access the site with the trailing `/Junapedia/` path during initial DNS propagation.
