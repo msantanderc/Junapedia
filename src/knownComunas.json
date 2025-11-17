@@ -1,0 +1,1967 @@
+{
+  "generatedAt": "2025-11-17T18:50:36.167Z",
+  "counts": [
+    {
+      "name": "Santiago",
+      "count": 221
+    },
+    {
+      "name": "Maipu",
+      "count": 207
+    },
+    {
+      "name": "Providencia",
+      "count": 189
+    },
+    {
+      "name": "Nunoa",
+      "count": 129
+    },
+    {
+      "name": "Las Condes",
+      "count": 123
+    },
+    {
+      "name": "La Florida",
+      "count": 113
+    },
+    {
+      "name": "San Miguel",
+      "count": 79
+    },
+    {
+      "name": "Macul",
+      "count": 54
+    },
+    {
+      "name": "La Cisterna",
+      "count": 45
+    },
+    {
+      "name": "Cerrillos",
+      "count": 44
+    },
+    {
+      "name": "San Joaquin",
+      "count": 39
+    },
+    {
+      "name": "Penalolen",
+      "count": 36
+    },
+    {
+      "name": "El Bosque",
+      "count": 22
+    },
+    {
+      "name": "La Reina",
+      "count": 21
+    },
+    {
+      "name": "2",
+      "count": 15
+    },
+    {
+      "name": "La Granja",
+      "count": 15
+    },
+    {
+      "name": "1",
+      "count": 14
+    },
+    {
+      "name": "3363",
+      "count": 13
+    },
+    {
+      "name": "3",
+      "count": 10
+    },
+    {
+      "name": "Pedro Aguirre Cerda",
+      "count": 9
+    },
+    {
+      "name": "A",
+      "count": 8
+    },
+    {
+      "name": "B",
+      "count": 8
+    },
+    {
+      "name": "Pudahuel",
+      "count": 8
+    },
+    {
+      "name": "C",
+      "count": 6
+    },
+    {
+      "name": "Estacion Central",
+      "count": 6
+    },
+    {
+      "name": "Lo Espejo",
+      "count": 6
+    },
+    {
+      "name": "4",
+      "count": 5
+    },
+    {
+      "name": "China",
+      "count": 5
+    },
+    {
+      "name": "San Bernardo",
+      "count": 5
+    },
+    {
+      "name": "San Ramon",
+      "count": 5
+    },
+    {
+      "name": "3469",
+      "count": 4
+    },
+    {
+      "name": "3750",
+      "count": 4
+    },
+    {
+      "name": "7",
+      "count": 4
+    },
+    {
+      "name": "76",
+      "count": 4
+    },
+    {
+      "name": "8",
+      "count": 4
+    },
+    {
+      "name": "La Pintana",
+      "count": 4
+    },
+    {
+      "name": "Piso",
+      "count": 4
+    },
+    {
+      "name": "105",
+      "count": 3
+    },
+    {
+      "name": "2180",
+      "count": 3
+    },
+    {
+      "name": "239",
+      "count": 3
+    },
+    {
+      "name": "3659",
+      "count": 3
+    },
+    {
+      "name": "3769",
+      "count": 3
+    },
+    {
+      "name": "6",
+      "count": 3
+    },
+    {
+      "name": "0",
+      "count": 2
+    },
+    {
+      "name": "101",
+      "count": 2
+    },
+    {
+      "name": "130",
+      "count": 2
+    },
+    {
+      "name": "14",
+      "count": 2
+    },
+    {
+      "name": "15",
+      "count": 2
+    },
+    {
+      "name": "17",
+      "count": 2
+    },
+    {
+      "name": "198",
+      "count": 2
+    },
+    {
+      "name": "2249",
+      "count": 2
+    },
+    {
+      "name": "24",
+      "count": 2
+    },
+    {
+      "name": "240",
+      "count": 2
+    },
+    {
+      "name": "30",
+      "count": 2
+    },
+    {
+      "name": "314",
+      "count": 2
+    },
+    {
+      "name": "3284",
+      "count": 2
+    },
+    {
+      "name": "33",
+      "count": 2
+    },
+    {
+      "name": "398",
+      "count": 2
+    },
+    {
+      "name": "40",
+      "count": 2
+    },
+    {
+      "name": "5",
+      "count": 2
+    },
+    {
+      "name": "584",
+      "count": 2
+    },
+    {
+      "name": "585",
+      "count": 2
+    },
+    {
+      "name": "66",
+      "count": 2
+    },
+    {
+      "name": "9",
+      "count": 2
+    },
+    {
+      "name": "Alameda",
+      "count": 2
+    },
+    {
+      "name": "Colina",
+      "count": 2
+    },
+    {
+      "name": "Estacion",
+      "count": 2
+    },
+    {
+      "name": "Interior",
+      "count": 2
+    },
+    {
+      "name": "L",
+      "count": 2
+    },
+    {
+      "name": "Sur",
+      "count": 2
+    },
+    {
+      "name": "Universitario",
+      "count": 2
+    },
+    {
+      "name": "Usach",
+      "count": 2
+    },
+    {
+      "name": "02",
+      "count": 1
+    },
+    {
+      "name": "035",
+      "count": 1
+    },
+    {
+      "name": "0483",
+      "count": 1
+    },
+    {
+      "name": "05",
+      "count": 1
+    },
+    {
+      "name": "060",
+      "count": 1
+    },
+    {
+      "name": "0670",
+      "count": 1
+    },
+    {
+      "name": "10",
+      "count": 1
+    },
+    {
+      "name": "104",
+      "count": 1
+    },
+    {
+      "name": "1091",
+      "count": 1
+    },
+    {
+      "name": "1093",
+      "count": 1
+    },
+    {
+      "name": "1099",
+      "count": 1
+    },
+    {
+      "name": "11",
+      "count": 1
+    },
+    {
+      "name": "112",
+      "count": 1
+    },
+    {
+      "name": "1122",
+      "count": 1
+    },
+    {
+      "name": "113",
+      "count": 1
+    },
+    {
+      "name": "1145",
+      "count": 1
+    },
+    {
+      "name": "115",
+      "count": 1
+    },
+    {
+      "name": "1165",
+      "count": 1
+    },
+    {
+      "name": "117",
+      "count": 1
+    },
+    {
+      "name": "1173",
+      "count": 1
+    },
+    {
+      "name": "12",
+      "count": 1
+    },
+    {
+      "name": "1202",
+      "count": 1
+    },
+    {
+      "name": "121",
+      "count": 1
+    },
+    {
+      "name": "1233",
+      "count": 1
+    },
+    {
+      "name": "127",
+      "count": 1
+    },
+    {
+      "name": "1290",
+      "count": 1
+    },
+    {
+      "name": "1295",
+      "count": 1
+    },
+    {
+      "name": "13",
+      "count": 1
+    },
+    {
+      "name": "132",
+      "count": 1
+    },
+    {
+      "name": "1321",
+      "count": 1
+    },
+    {
+      "name": "1340",
+      "count": 1
+    },
+    {
+      "name": "1359",
+      "count": 1
+    },
+    {
+      "name": "136",
+      "count": 1
+    },
+    {
+      "name": "1360",
+      "count": 1
+    },
+    {
+      "name": "1369",
+      "count": 1
+    },
+    {
+      "name": "1379",
+      "count": 1
+    },
+    {
+      "name": "1385",
+      "count": 1
+    },
+    {
+      "name": "1392",
+      "count": 1
+    },
+    {
+      "name": "146",
+      "count": 1
+    },
+    {
+      "name": "1466",
+      "count": 1
+    },
+    {
+      "name": "1501",
+      "count": 1
+    },
+    {
+      "name": "1510",
+      "count": 1
+    },
+    {
+      "name": "1520",
+      "count": 1
+    },
+    {
+      "name": "154",
+      "count": 1
+    },
+    {
+      "name": "1550",
+      "count": 1
+    },
+    {
+      "name": "1568",
+      "count": 1
+    },
+    {
+      "name": "1570",
+      "count": 1
+    },
+    {
+      "name": "1583",
+      "count": 1
+    },
+    {
+      "name": "1586",
+      "count": 1
+    },
+    {
+      "name": "1591",
+      "count": 1
+    },
+    {
+      "name": "1595",
+      "count": 1
+    },
+    {
+      "name": "161",
+      "count": 1
+    },
+    {
+      "name": "165",
+      "count": 1
+    },
+    {
+      "name": "167",
+      "count": 1
+    },
+    {
+      "name": "1670",
+      "count": 1
+    },
+    {
+      "name": "1680",
+      "count": 1
+    },
+    {
+      "name": "1697",
+      "count": 1
+    },
+    {
+      "name": "171",
+      "count": 1
+    },
+    {
+      "name": "1722",
+      "count": 1
+    },
+    {
+      "name": "173",
+      "count": 1
+    },
+    {
+      "name": "1735",
+      "count": 1
+    },
+    {
+      "name": "1765",
+      "count": 1
+    },
+    {
+      "name": "178",
+      "count": 1
+    },
+    {
+      "name": "1781",
+      "count": 1
+    },
+    {
+      "name": "1785",
+      "count": 1
+    },
+    {
+      "name": "1786",
+      "count": 1
+    },
+    {
+      "name": "180",
+      "count": 1
+    },
+    {
+      "name": "1801",
+      "count": 1
+    },
+    {
+      "name": "1832",
+      "count": 1
+    },
+    {
+      "name": "1839",
+      "count": 1
+    },
+    {
+      "name": "1864",
+      "count": 1
+    },
+    {
+      "name": "1869",
+      "count": 1
+    },
+    {
+      "name": "188",
+      "count": 1
+    },
+    {
+      "name": "1884",
+      "count": 1
+    },
+    {
+      "name": "1911",
+      "count": 1
+    },
+    {
+      "name": "193",
+      "count": 1
+    },
+    {
+      "name": "1948",
+      "count": 1
+    },
+    {
+      "name": "195",
+      "count": 1
+    },
+    {
+      "name": "1952",
+      "count": 1
+    },
+    {
+      "name": "1955",
+      "count": 1
+    },
+    {
+      "name": "1966",
+      "count": 1
+    },
+    {
+      "name": "1969",
+      "count": 1
+    },
+    {
+      "name": "1972",
+      "count": 1
+    },
+    {
+      "name": "199",
+      "count": 1
+    },
+    {
+      "name": "2017",
+      "count": 1
+    },
+    {
+      "name": "2021",
+      "count": 1
+    },
+    {
+      "name": "203",
+      "count": 1
+    },
+    {
+      "name": "204",
+      "count": 1
+    },
+    {
+      "name": "2053",
+      "count": 1
+    },
+    {
+      "name": "206",
+      "count": 1
+    },
+    {
+      "name": "2063",
+      "count": 1
+    },
+    {
+      "name": "2071",
+      "count": 1
+    },
+    {
+      "name": "2077",
+      "count": 1
+    },
+    {
+      "name": "2085",
+      "count": 1
+    },
+    {
+      "name": "209",
+      "count": 1
+    },
+    {
+      "name": "21",
+      "count": 1
+    },
+    {
+      "name": "2103",
+      "count": 1
+    },
+    {
+      "name": "2111",
+      "count": 1
+    },
+    {
+      "name": "2121",
+      "count": 1
+    },
+    {
+      "name": "213",
+      "count": 1
+    },
+    {
+      "name": "2139",
+      "count": 1
+    },
+    {
+      "name": "214",
+      "count": 1
+    },
+    {
+      "name": "2145",
+      "count": 1
+    },
+    {
+      "name": "2146",
+      "count": 1
+    },
+    {
+      "name": "215",
+      "count": 1
+    },
+    {
+      "name": "216",
+      "count": 1
+    },
+    {
+      "name": "2161",
+      "count": 1
+    },
+    {
+      "name": "2170",
+      "count": 1
+    },
+    {
+      "name": "2171",
+      "count": 1
+    },
+    {
+      "name": "2182",
+      "count": 1
+    },
+    {
+      "name": "219",
+      "count": 1
+    },
+    {
+      "name": "2196",
+      "count": 1
+    },
+    {
+      "name": "220",
+      "count": 1
+    },
+    {
+      "name": "2206",
+      "count": 1
+    },
+    {
+      "name": "2236",
+      "count": 1
+    },
+    {
+      "name": "2240",
+      "count": 1
+    },
+    {
+      "name": "2255",
+      "count": 1
+    },
+    {
+      "name": "2260",
+      "count": 1
+    },
+    {
+      "name": "2261",
+      "count": 1
+    },
+    {
+      "name": "2274",
+      "count": 1
+    },
+    {
+      "name": "228",
+      "count": 1
+    },
+    {
+      "name": "2281",
+      "count": 1
+    },
+    {
+      "name": "2298",
+      "count": 1
+    },
+    {
+      "name": "2334",
+      "count": 1
+    },
+    {
+      "name": "2355",
+      "count": 1
+    },
+    {
+      "name": "2356",
+      "count": 1
+    },
+    {
+      "name": "2357",
+      "count": 1
+    },
+    {
+      "name": "2367",
+      "count": 1
+    },
+    {
+      "name": "238",
+      "count": 1
+    },
+    {
+      "name": "2380",
+      "count": 1
+    },
+    {
+      "name": "2405",
+      "count": 1
+    },
+    {
+      "name": "2407",
+      "count": 1
+    },
+    {
+      "name": "243",
+      "count": 1
+    },
+    {
+      "name": "2445",
+      "count": 1
+    },
+    {
+      "name": "2499",
+      "count": 1
+    },
+    {
+      "name": "2506",
+      "count": 1
+    },
+    {
+      "name": "252",
+      "count": 1
+    },
+    {
+      "name": "2522",
+      "count": 1
+    },
+    {
+      "name": "253",
+      "count": 1
+    },
+    {
+      "name": "2536",
+      "count": 1
+    },
+    {
+      "name": "2537",
+      "count": 1
+    },
+    {
+      "name": "2550",
+      "count": 1
+    },
+    {
+      "name": "2555",
+      "count": 1
+    },
+    {
+      "name": "256",
+      "count": 1
+    },
+    {
+      "name": "26",
+      "count": 1
+    },
+    {
+      "name": "260",
+      "count": 1
+    },
+    {
+      "name": "27",
+      "count": 1
+    },
+    {
+      "name": "275",
+      "count": 1
+    },
+    {
+      "name": "2798",
+      "count": 1
+    },
+    {
+      "name": "281",
+      "count": 1
+    },
+    {
+      "name": "284",
+      "count": 1
+    },
+    {
+      "name": "2843",
+      "count": 1
+    },
+    {
+      "name": "285",
+      "count": 1
+    },
+    {
+      "name": "289",
+      "count": 1
+    },
+    {
+      "name": "29",
+      "count": 1
+    },
+    {
+      "name": "290",
+      "count": 1
+    },
+    {
+      "name": "2902",
+      "count": 1
+    },
+    {
+      "name": "3044",
+      "count": 1
+    },
+    {
+      "name": "31",
+      "count": 1
+    },
+    {
+      "name": "3140",
+      "count": 1
+    },
+    {
+      "name": "3181",
+      "count": 1
+    },
+    {
+      "name": "3195",
+      "count": 1
+    },
+    {
+      "name": "32",
+      "count": 1
+    },
+    {
+      "name": "3201",
+      "count": 1
+    },
+    {
+      "name": "3259",
+      "count": 1
+    },
+    {
+      "name": "3271",
+      "count": 1
+    },
+    {
+      "name": "330",
+      "count": 1
+    },
+    {
+      "name": "3301",
+      "count": 1
+    },
+    {
+      "name": "337",
+      "count": 1
+    },
+    {
+      "name": "3390",
+      "count": 1
+    },
+    {
+      "name": "341",
+      "count": 1
+    },
+    {
+      "name": "343",
+      "count": 1
+    },
+    {
+      "name": "345",
+      "count": 1
+    },
+    {
+      "name": "3458",
+      "count": 1
+    },
+    {
+      "name": "3470",
+      "count": 1
+    },
+    {
+      "name": "3480",
+      "count": 1
+    },
+    {
+      "name": "350",
+      "count": 1
+    },
+    {
+      "name": "3519",
+      "count": 1
+    },
+    {
+      "name": "3524",
+      "count": 1
+    },
+    {
+      "name": "356",
+      "count": 1
+    },
+    {
+      "name": "3576",
+      "count": 1
+    },
+    {
+      "name": "36",
+      "count": 1
+    },
+    {
+      "name": "361",
+      "count": 1
+    },
+    {
+      "name": "3648",
+      "count": 1
+    },
+    {
+      "name": "3811",
+      "count": 1
+    },
+    {
+      "name": "39",
+      "count": 1
+    },
+    {
+      "name": "3962",
+      "count": 1
+    },
+    {
+      "name": "399",
+      "count": 1
+    },
+    {
+      "name": "3t2mco06",
+      "count": 1
+    },
+    {
+      "name": "4008",
+      "count": 1
+    },
+    {
+      "name": "402",
+      "count": 1
+    },
+    {
+      "name": "4024",
+      "count": 1
+    },
+    {
+      "name": "4036",
+      "count": 1
+    },
+    {
+      "name": "405",
+      "count": 1
+    },
+    {
+      "name": "4062",
+      "count": 1
+    },
+    {
+      "name": "4068",
+      "count": 1
+    },
+    {
+      "name": "4072",
+      "count": 1
+    },
+    {
+      "name": "4099",
+      "count": 1
+    },
+    {
+      "name": "41",
+      "count": 1
+    },
+    {
+      "name": "4115",
+      "count": 1
+    },
+    {
+      "name": "4120",
+      "count": 1
+    },
+    {
+      "name": "432",
+      "count": 1
+    },
+    {
+      "name": "441",
+      "count": 1
+    },
+    {
+      "name": "4502",
+      "count": 1
+    },
+    {
+      "name": "4569",
+      "count": 1
+    },
+    {
+      "name": "46",
+      "count": 1
+    },
+    {
+      "name": "4652",
+      "count": 1
+    },
+    {
+      "name": "48",
+      "count": 1
+    },
+    {
+      "name": "4802",
+      "count": 1
+    },
+    {
+      "name": "4870",
+      "count": 1
+    },
+    {
+      "name": "4909",
+      "count": 1
+    },
+    {
+      "name": "499",
+      "count": 1
+    },
+    {
+      "name": "50",
+      "count": 1
+    },
+    {
+      "name": "502",
+      "count": 1
+    },
+    {
+      "name": "5041",
+      "count": 1
+    },
+    {
+      "name": "506",
+      "count": 1
+    },
+    {
+      "name": "5091",
+      "count": 1
+    },
+    {
+      "name": "5100",
+      "count": 1
+    },
+    {
+      "name": "513",
+      "count": 1
+    },
+    {
+      "name": "5199",
+      "count": 1
+    },
+    {
+      "name": "5218",
+      "count": 1
+    },
+    {
+      "name": "528",
+      "count": 1
+    },
+    {
+      "name": "53",
+      "count": 1
+    },
+    {
+      "name": "530",
+      "count": 1
+    },
+    {
+      "name": "5331",
+      "count": 1
+    },
+    {
+      "name": "54",
+      "count": 1
+    },
+    {
+      "name": "5455",
+      "count": 1
+    },
+    {
+      "name": "5660",
+      "count": 1
+    },
+    {
+      "name": "570",
+      "count": 1
+    },
+    {
+      "name": "580",
+      "count": 1
+    },
+    {
+      "name": "6004",
+      "count": 1
+    },
+    {
+      "name": "6015",
+      "count": 1
+    },
+    {
+      "name": "6110",
+      "count": 1
+    },
+    {
+      "name": "615",
+      "count": 1
+    },
+    {
+      "name": "6177",
+      "count": 1
+    },
+    {
+      "name": "62",
+      "count": 1
+    },
+    {
+      "name": "6252",
+      "count": 1
+    },
+    {
+      "name": "6480",
+      "count": 1
+    },
+    {
+      "name": "65",
+      "count": 1
+    },
+    {
+      "name": "665",
+      "count": 1
+    },
+    {
+      "name": "6658",
+      "count": 1
+    },
+    {
+      "name": "6664",
+      "count": 1
+    },
+    {
+      "name": "6702",
+      "count": 1
+    },
+    {
+      "name": "6902",
+      "count": 1
+    },
+    {
+      "name": "6950",
+      "count": 1
+    },
+    {
+      "name": "70",
+      "count": 1
+    },
+    {
+      "name": "712",
+      "count": 1
+    },
+    {
+      "name": "716",
+      "count": 1
+    },
+    {
+      "name": "7187",
+      "count": 1
+    },
+    {
+      "name": "720",
+      "count": 1
+    },
+    {
+      "name": "7217",
+      "count": 1
+    },
+    {
+      "name": "725",
+      "count": 1
+    },
+    {
+      "name": "7270",
+      "count": 1
+    },
+    {
+      "name": "73",
+      "count": 1
+    },
+    {
+      "name": "7309",
+      "count": 1
+    },
+    {
+      "name": "7362",
+      "count": 1
+    },
+    {
+      "name": "740",
+      "count": 1
+    },
+    {
+      "name": "744",
+      "count": 1
+    },
+    {
+      "name": "75",
+      "count": 1
+    },
+    {
+      "name": "7651",
+      "count": 1
+    },
+    {
+      "name": "798",
+      "count": 1
+    },
+    {
+      "name": "799",
+      "count": 1
+    },
+    {
+      "name": "80",
+      "count": 1
+    },
+    {
+      "name": "806",
+      "count": 1
+    },
+    {
+      "name": "8074",
+      "count": 1
+    },
+    {
+      "name": "81",
+      "count": 1
+    },
+    {
+      "name": "8315",
+      "count": 1
+    },
+    {
+      "name": "8487",
+      "count": 1
+    },
+    {
+      "name": "853",
+      "count": 1
+    },
+    {
+      "name": "8537",
+      "count": 1
+    },
+    {
+      "name": "866",
+      "count": 1
+    },
+    {
+      "name": "8685",
+      "count": 1
+    },
+    {
+      "name": "87",
+      "count": 1
+    },
+    {
+      "name": "8759",
+      "count": 1
+    },
+    {
+      "name": "882",
+      "count": 1
+    },
+    {
+      "name": "902",
+      "count": 1
+    },
+    {
+      "name": "9091",
+      "count": 1
+    },
+    {
+      "name": "91",
+      "count": 1
+    },
+    {
+      "name": "9433",
+      "count": 1
+    },
+    {
+      "name": "96",
+      "count": 1
+    },
+    {
+      "name": "97",
+      "count": 1
+    },
+    {
+      "name": "98",
+      "count": 1
+    },
+    {
+      "name": "Alfonso",
+      "count": 1
+    },
+    {
+      "name": "Borja",
+      "count": 1
+    },
+    {
+      "name": "Catamarca",
+      "count": 1
+    },
+    {
+      "name": "Chacabuco",
+      "count": 1
+    },
+    {
+      "name": "Chile Chico",
+      "count": 1
+    },
+    {
+      "name": "E",
+      "count": 1
+    },
+    {
+      "name": "Entrepiso",
+      "count": 1
+    },
+    {
+      "name": "F",
+      "count": 1
+    },
+    {
+      "name": "Fc4028",
+      "count": 1
+    },
+    {
+      "name": "Forma",
+      "count": 1
+    },
+    {
+      "name": "Gorbea",
+      "count": 1
+    },
+    {
+      "name": "Grajales",
+      "count": 1
+    },
+    {
+      "name": "Guzman",
+      "count": 1
+    },
+    {
+      "name": "Hurtado",
+      "count": 1
+    },
+    {
+      "name": "Interior Mall Plaza Alameda",
+      "count": 1
+    },
+    {
+      "name": "K",
+      "count": 1
+    },
+    {
+      "name": "Kiosko",
+      "count": 1
+    },
+    {
+      "name": "L1",
+      "count": 1
+    },
+    {
+      "name": "M",
+      "count": 1
+    },
+    {
+      "name": "Mall Costa Pacifico",
+      "count": 1
+    },
+    {
+      "name": "Medio",
+      "count": 1
+    },
+    {
+      "name": "Ohiggins",
+      "count": 1
+    },
+    {
+      "name": "Ovalle",
+      "count": 1
+    },
+    {
+      "name": "P227",
+      "count": 1
+    },
+    {
+      "name": "Padre Hurtado",
+      "count": 1
+    },
+    {
+      "name": "Parcelas",
+      "count": 1
+    },
+    {
+      "name": "Pj",
+      "count": 1
+    },
+    {
+      "name": "Portales",
+      "count": 1
+    },
+    {
+      "name": "Q",
+      "count": 1
+    },
+    {
+      "name": "Quinta Normal 4436",
+      "count": 1
+    },
+    {
+      "name": "Rejas",
+      "count": 1
+    },
+    {
+      "name": "T409",
+      "count": 1
+    },
+    {
+      "name": "Tagle",
+      "count": 1
+    },
+    {
+      "name": "Tecnolog",
+      "count": 1
+    },
+    {
+      "name": "Udla",
+      "count": 1
+    },
+    {
+      "name": "Udp",
+      "count": 1
+    },
+    {
+      "name": "Valenzuela",
+      "count": 1
+    },
+    {
+      "name": "Vime",
+      "count": 1
+    }
+  ],
+  "names": [
+    "Santiago",
+    "Maipu",
+    "Providencia",
+    "Nunoa",
+    "Las Condes",
+    "La Florida",
+    "San Miguel",
+    "Macul",
+    "La Cisterna",
+    "Cerrillos",
+    "San Joaquin",
+    "Penalolen",
+    "El Bosque",
+    "La Reina",
+    "2",
+    "La Granja",
+    "1",
+    "3363",
+    "3",
+    "Pedro Aguirre Cerda",
+    "A",
+    "B",
+    "Pudahuel",
+    "C",
+    "Estacion Central",
+    "Lo Espejo",
+    "4",
+    "China",
+    "San Bernardo",
+    "San Ramon",
+    "3469",
+    "3750",
+    "7",
+    "76",
+    "8",
+    "La Pintana",
+    "Piso",
+    "105",
+    "2180",
+    "239",
+    "3659",
+    "3769",
+    "6",
+    "0",
+    "101",
+    "130",
+    "14",
+    "15",
+    "17",
+    "198",
+    "2249",
+    "24",
+    "240",
+    "30",
+    "314",
+    "3284",
+    "33",
+    "398",
+    "40",
+    "5",
+    "584",
+    "585",
+    "66",
+    "9",
+    "Alameda",
+    "Colina",
+    "Estacion",
+    "Interior",
+    "L",
+    "Sur",
+    "Universitario",
+    "Usach",
+    "02",
+    "035",
+    "0483",
+    "05",
+    "060",
+    "0670",
+    "10",
+    "104",
+    "1091",
+    "1093",
+    "1099",
+    "11",
+    "112",
+    "1122",
+    "113",
+    "1145",
+    "115",
+    "1165",
+    "117",
+    "1173",
+    "12",
+    "1202",
+    "121",
+    "1233",
+    "127",
+    "1290",
+    "1295",
+    "13",
+    "132",
+    "1321",
+    "1340",
+    "1359",
+    "136",
+    "1360",
+    "1369",
+    "1379",
+    "1385",
+    "1392",
+    "146",
+    "1466",
+    "1501",
+    "1510",
+    "1520",
+    "154",
+    "1550",
+    "1568",
+    "1570",
+    "1583",
+    "1586",
+    "1591",
+    "1595",
+    "161",
+    "165",
+    "167",
+    "1670",
+    "1680",
+    "1697",
+    "171",
+    "1722",
+    "173",
+    "1735",
+    "1765",
+    "178",
+    "1781",
+    "1785",
+    "1786",
+    "180",
+    "1801",
+    "1832",
+    "1839",
+    "1864",
+    "1869",
+    "188",
+    "1884",
+    "1911",
+    "193",
+    "1948",
+    "195",
+    "1952",
+    "1955",
+    "1966",
+    "1969",
+    "1972",
+    "199",
+    "2017",
+    "2021",
+    "203",
+    "204",
+    "2053",
+    "206",
+    "2063",
+    "2071",
+    "2077",
+    "2085",
+    "209",
+    "21",
+    "2103",
+    "2111",
+    "2121",
+    "213",
+    "2139",
+    "214",
+    "2145",
+    "2146",
+    "215",
+    "216",
+    "2161",
+    "2170",
+    "2171",
+    "2182",
+    "219",
+    "2196",
+    "220",
+    "2206",
+    "2236",
+    "2240",
+    "2255",
+    "2260",
+    "2261",
+    "2274",
+    "228",
+    "2281",
+    "2298",
+    "2334",
+    "2355",
+    "2356",
+    "2357",
+    "2367",
+    "238",
+    "2380",
+    "2405",
+    "2407",
+    "243",
+    "2445",
+    "2499",
+    "2506",
+    "252",
+    "2522",
+    "253",
+    "2536",
+    "2537",
+    "2550",
+    "2555",
+    "256",
+    "26",
+    "260",
+    "27",
+    "275",
+    "2798",
+    "281",
+    "284",
+    "2843",
+    "285",
+    "289",
+    "29",
+    "290",
+    "2902",
+    "3044",
+    "31",
+    "3140",
+    "3181",
+    "3195",
+    "32",
+    "3201",
+    "3259",
+    "3271",
+    "330",
+    "3301",
+    "337",
+    "3390",
+    "341",
+    "343",
+    "345",
+    "3458",
+    "3470",
+    "3480",
+    "350",
+    "3519",
+    "3524",
+    "356",
+    "3576",
+    "36",
+    "361",
+    "3648",
+    "3811",
+    "39",
+    "3962",
+    "399",
+    "3t2mco06",
+    "4008",
+    "402",
+    "4024",
+    "4036",
+    "405",
+    "4062",
+    "4068",
+    "4072",
+    "4099",
+    "41",
+    "4115",
+    "4120",
+    "432",
+    "441",
+    "4502",
+    "4569",
+    "46",
+    "4652",
+    "48",
+    "4802",
+    "4870",
+    "4909",
+    "499",
+    "50",
+    "502",
+    "5041",
+    "506",
+    "5091",
+    "5100",
+    "513",
+    "5199",
+    "5218",
+    "528",
+    "53",
+    "530",
+    "5331",
+    "54",
+    "5455",
+    "5660",
+    "570",
+    "580",
+    "6004",
+    "6015",
+    "6110",
+    "615",
+    "6177",
+    "62",
+    "6252",
+    "6480",
+    "65",
+    "665",
+    "6658",
+    "6664",
+    "6702",
+    "6902",
+    "6950",
+    "70",
+    "712",
+    "716",
+    "7187",
+    "720",
+    "7217",
+    "725",
+    "7270",
+    "73",
+    "7309",
+    "7362",
+    "740",
+    "744",
+    "75",
+    "7651",
+    "798",
+    "799",
+    "80",
+    "806",
+    "8074",
+    "81",
+    "8315",
+    "8487",
+    "853",
+    "8537",
+    "866",
+    "8685",
+    "87",
+    "8759",
+    "882",
+    "902",
+    "9091",
+    "91",
+    "9433",
+    "96",
+    "97",
+    "98",
+    "Alfonso",
+    "Borja",
+    "Catamarca",
+    "Chacabuco",
+    "Chile Chico",
+    "E",
+    "Entrepiso",
+    "F",
+    "Fc4028",
+    "Forma",
+    "Gorbea",
+    "Grajales",
+    "Guzman",
+    "Hurtado",
+    "Interior Mall Plaza Alameda",
+    "K",
+    "Kiosko",
+    "L1",
+    "M",
+    "Mall Costa Pacifico",
+    "Medio",
+    "Ohiggins",
+    "Ovalle",
+    "P227",
+    "Padre Hurtado",
+    "Parcelas",
+    "Pj",
+    "Portales",
+    "Q",
+    "Quinta Normal 4436",
+    "Rejas",
+    "T409",
+    "Tagle",
+    "Tecnolog",
+    "Udla",
+    "Udp",
+    "Valenzuela",
+    "Vime"
+  ]
+}

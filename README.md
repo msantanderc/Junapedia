@@ -35,6 +35,26 @@ npm run dev
 ```
 Open http://localhost:3000
 
+## Discover Official Websites
+Use the helper script to suggest official websites for franchises that currently fall back to Google search.
+
+Requirements (choose one backend):
+
+- Google Custom Search JSON API: set `GOOGLE_API_KEY` and `GOOGLE_CSE_ID`
+- SerpAPI: set `SERPAPI_KEY`
+
+PowerShell commands:
+
+```powershell
+# Google CSE
+$env:GOOGLE_API_KEY = "<your_key>"; $env:GOOGLE_CSE_ID = "<your_cse_id>"; node scripts/discover-websites.mjs
+
+# SerpAPI
+$env:SERPAPI_KEY = "<your_serpapi_key>"; node scripts/discover-websites.mjs
+```
+
+Output: `scripts/website-suggestions.json` contains the 5 top results per token and a chosen candidate when detected. Review and update `src/websiteMap.js` accordingly.
+
 ## Deploy to GitHub Pages
 This project is configured to deploy automatically to GitHub Pages using a workflow at `.github/workflows/deploy.yml`.
 

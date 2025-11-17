@@ -1,7 +1,9 @@
-import React from 'react'
+import { useState, Component } from 'react'
 import PluxeeGuide from '../pluxee-junaeb-guide'
+import { TemplateShell } from '../components/v0/TemplateShell'
+import Header from '@/components/header'
 
-class ErrorBoundary extends React.Component {
+class ErrorBoundary extends Component {
   constructor(props) {
     super(props);
     this.state = { error: null };
@@ -33,13 +35,13 @@ class ErrorBoundary extends React.Component {
 }
 
 export default function App() {
+  const [searchQuery, setSearchQuery] = useState('')
   return (
     <div className="min-h-screen">
-      <div className="fixed left-4 top-4 z-50 bg-yellow-200 text-yellow-800 px-3 py-1 rounded shadow">
-        DEBUG: App mounted
-      </div>
       <ErrorBoundary>
-        <PluxeeGuide />
+        <TemplateShell header={<Header searchQuery={searchQuery} onSearchChange={setSearchQuery} />}>
+          <PluxeeGuide hideHeader searchTerm={searchQuery} onSearchTermChange={setSearchQuery} />
+        </TemplateShell>
       </ErrorBoundary>
     </div>
   )

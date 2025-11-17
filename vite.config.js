@@ -7,7 +7,8 @@ export default defineConfig({
   plugins: [react()],
   resolve: {
     alias: [
-      { find: '@/components', replacement: '/components' },
+      // v0 components placed under /types/components
+      { find: '@/components', replacement: '/types/components' },
       { find: '@', replacement: '/src' }
     ]
   },

@@ -1,8 +1,13 @@
 import React, { useState, useEffect } from 'react';
 import { FRANCHISE_NAME_MAP } from './src/franchiseNames.js';
+import allowedComunas from './src/allowedComunas.json';
 import { Search, MapPin, DollarSign, Store as StoreIcon, X, Globe } from 'lucide-react';
 import { WEBSITE_MAP } from './src/websiteMap.js';
+import { LOGO_MAP } from './src/logoMap.js';
 import { Button } from './components/ui/button';
+import Filters from './components/v0/Filters';
+import StoreGrid from '@/components/store-grid';
+import StoreCard from '@/components/store-card';
 // Firebase/Firestore removed — app is Supabase-only now
 
 type MenuItem = {
@@ -51,6 +56,64 @@ function openWebsite(name: string, token?: string | null) {
   const url = buildWebsiteUrl(name, token);
   window.open(url, '_blank', 'noopener,noreferrer');
 }
+function extractDomain(u: string): string | null {
+  try {
+    const url = new URL(u);
+    return url.hostname;
+  } catch {
+    return null;
+  }
+}
+
+function slugifyCategory(raw?: string): string | null {
+  if (!raw) return null;
+  try {
+    const lower = String(raw).trim().toLowerCase();
+    const noDia = lower.normalize('NFD').replace(/\p{Diacritic}/gu, '');
+    const hyph = noDia.replace(/[^a-z0-9\s-]/g, '').replace(/\s+/g, '-');
+    return hyph; // e.g., "Comida Rápida" -> "comida-rapida"
+  } catch {
+    return String(raw).trim().toLowerCase().replace(/\s+/g, '-');
+  }
+}
+
+const CATEGORY_LOGO_MAP: Record<string, string> = {
+  'restaurante': '/logos/restaurantes.svg',
+  'restaurantes': '/logos/restaurantes.svg',
+  'casinos': '/logos/Casinos.svg',
+  'minimarket': '/logos/MiniMarket.svg',
+  'patio de comida': '/logos/patio de comida.svg',
+  'puntos verdes': '/logos/puntos verdes.svg',
+  'puntos azules': '/logos/puntos azules.svg',
+  'supermercado': '/logos/supermercado.svg',
+  'supermercados': '/logos/supermercado.svg'
+};
+
+function buildLogoCandidates(name: string, category?: string): string[] {
+  const token = findFranchiseKey(name || '', []);
+  const cands: string[] = [];
+  if (token) {
+    const mapped = WEBSITE_MAP[token] || '';
+    if (mapped && !/google\.com\/search/i.test(mapped)) {
+      const host = extractDomain(mapped);
+      if (host) {
+        cands.push(`https://www.google.com/s2/favicons?sz=128&domain=${host}`);
+        cands.push(`https://icons.duckduckgo.com/ip3/${host}.ico`);
+        cands.push(`https://${host}/favicon.ico`);
+      }
+    }
+    const logoFromMap = LOGO_MAP[token];
+    if (logoFromMap) cands.push(logoFromMap);
+    // also try /public/logos/<token> with common extensions
+    cands.push(`/logos/${token}.svg`, `/logos/${token}.png`, `/logos/${token}.jpg`, `/logos/${token}.jpeg`, `/logos/${token}.webp`);
+  }
+  if (category) {
+    const key = String(category).trim().toLowerCase();
+    const mapped = CATEGORY_LOGO_MAP[key];
+    if (mapped) cands.push(mapped);
+  }
+  return Array.from(new Set(cands));
+}
 
 // Logo background removed as requested
 
@@ -91,8 +154,10 @@ function findFranchiseDisplay(name: string, members: any[] = []): string {
   const compact = norm.replace(/\s+/g, '');
   for (const t of tokens) {
     if (!t) continue;
-    // token keys in the map are expected normalized (lowercase, single words)
-    if (norm === t || norm.includes(t) || compact.includes(t) || (name || '').toLowerCase().includes(t)) {
+    // normalize token (tokens often use hyphens); compare against normalized name
+    const tokenNorm = normalizeForKey(t.replace(/-/g, ' '));
+    const tokenCompact = tokenNorm.replace(/\s+/g, '');
+    if (norm === tokenNorm || norm.includes(tokenNorm) || compact.includes(tokenCompact) || (name || '').toLowerCase().includes(t.replace(/-/g, ' '))) {
       return FRANCHISE_NAME_MAP[t];
     }
   }
@@ -118,21 +183,39 @@ function findFranchiseKey(name: string, members: any[] = []): string | null {
   const norm = normalizeForKey(name || '');
   const compact = norm.replace(/\s+/g, '');
   for (const t of tokens) {
-    if (norm === t) return t;
+    const tokenNorm = normalizeForKey(t.replace(/-/g, ' '));
+    if (norm === tokenNorm) return t;
   }
   for (const t of tokens) {
-    if (norm.includes(t) || compact.includes(t) || (name || '').toLowerCase().includes(t)) return t;
+    const tokenNorm = normalizeForKey(t.replace(/-/g, ' '));
+    const tokenCompact = tokenNorm.replace(/\s+/g, '');
+    if (norm.includes(tokenNorm) || compact.includes(tokenCompact) || (name || '').toLowerCase().includes(t.replace(/-/g, ' '))) return t;
   }
   for (const m of members || []) {
     const mn = normalizeForKey(m && (m.name || m.canonical_name || ''));
     const mcompact = mn.replace(/\s+/g, '');
     for (const t of tokens) {
-      if (mn === t || mn.includes(t) || mcompact.includes(t) || (m.name || '').toLowerCase().includes(t)) {
+      const tokenNorm = normalizeForKey(t.replace(/-/g, ' '));
+      const tokenCompact = tokenNorm.replace(/\s+/g, '');
+      if (mn === tokenNorm || mn.includes(tokenNorm) || mcompact.includes(tokenCompact) || (m.name || '').toLowerCase().includes(t.replace(/-/g, ' '))) {
         return t;
       }
     }
   }
   return null;
+}
+
+// Compute the purchase hint / description for a store according to category and franchise status
+function computeStoreDescription(store: any): string {
+  const cat = normalizeText(store.category || '');
+  const isFranchise = !!findFranchiseKey(store.name || '', []);
+  if (/supermercad|minimarket|puntos verdes/.test(cat)) {
+    return 'Productos de 2 o menos Sellos';
+  }
+  if (/(restaurante|restaurantes|casino|casinos)/.test(cat) && !isFranchise && !/patio/.test(cat)) {
+    return 'Diversos productos del Menú del Local';
+  }
+  return 'menú especial especifico';
 }
 
 // rawDocs: Array<{id: string, data: any}>
@@ -204,11 +287,14 @@ function unifyFirestoreDocs(rawDocs: Array<{ id: string; data: any }>): Canonica
 
 type NewStore = Omit<Store, 'id'>;
 
-const PluxeeGuide = () => {
+type PluxeeGuideProps = { hideHeader?: boolean; searchTerm?: string; onSearchTermChange?: (v: string) => void }
+
+const PluxeeGuide = ({ hideHeader = false, searchTerm: controlledSearch, onSearchTermChange }: PluxeeGuideProps) => {
   console.log('PluxeeGuide: component render start');
   const [stores, setStores] = useState<CanonicalStore[]>([]);
   const [searchTerm, setSearchTerm] = useState<string>('');
   const [selectedCategory, setSelectedCategory] = useState<string>('all');
+  const [selectedComuna, setSelectedComuna] = useState<string>('all');
   const [selectedStore, setSelectedStore] = useState<CanonicalStore | null>(null);
   const [activeTab, setActiveTab] = useState<'restaurants' | 'supermarkets'>('restaurants');
   const [loading, setLoading] = useState<boolean>(true);
@@ -217,6 +303,13 @@ const PluxeeGuide = () => {
   const prevIdsRef = React.useRef<string[]>([]);
 
   const categories = ['all', 'Comida Rápida', 'Restaurante', 'Cafetería', 'Panadería', 'Supermercado'];
+
+  // Provide comunas list for the Filters UI.
+  // Use the user-provided whitelist so options appear even if no stores are present.
+  const comunas = React.useMemo(() => {
+    const allowed = Array.isArray(allowedComunas) ? allowedComunas.slice() : []
+    return allowed.sort((a, b) => String(a).localeCompare(String(b)))
+  }, [stores])
 
   useEffect(() => {
     console.log('PluxeeGuide: useEffect mount -> calling loadStores');
@@ -274,16 +367,21 @@ const PluxeeGuide = () => {
   // Removed client update/check features by request
 
   const filteredStores = (() => {
-    const q = normalizeText(searchTerm || '');
+    const effectiveSearch = controlledSearch ?? searchTerm;
+    const q = normalizeText(effectiveSearch || '');
     return stores.filter((store: CanonicalStore) => {
       const nameNorm = normalizeText(store.name);
       const addressesNorm = (store.addresses || []).map(a => normalizeText(a)).join(' ');
       const matchesSearch = q === '' || nameNorm.includes(q) || addressesNorm.includes(q);
-      const matchesCategory = selectedCategory === 'all' || (store.category || '') === selectedCategory;
+      const catNorm = normalizeText(store.category || '');
+      const selNorm = normalizeText(selectedCategory);
+      const matchesCategory = selectedCategory === 'all' || catNorm === selNorm;
+      const comunaNorm = normalizeText(selectedComuna || '');
+      const matchesComuna = selectedComuna === 'all' || addressesNorm.includes(comunaNorm);
       const matchesTab = activeTab === 'restaurants'
-        ? (store.category || '') !== 'Supermercado'
-        : (store.category || '') === 'Supermercado';
-      return matchesSearch && matchesCategory && matchesTab;
+        ? catNorm !== 'supermercados'
+        : catNorm === 'supermercados';
+      return matchesSearch && matchesCategory && matchesTab && matchesComuna;
     });
   })();
 
@@ -330,20 +428,22 @@ const PluxeeGuide = () => {
 
   return (
     <div className="min-h-screen bg-gradient-to-br from-blue-50 to-indigo-100">
-      <div className="bg-gradient-to-r from-pluxee-700 to-pluxee-500 text-white shadow-lg">
-        <div className="max-w-7xl mx-auto px-4 py-6">
-          <div className="flex items-center justify-between flex-wrap gap-3">
-            <div className="flex items-center gap-3">
-              <HeaderLogo />
-              <div>
-                <h1 className="text-3xl font-bold">Junapedia</h1>
-                <p className="text-pluxee-100 mt-1">Encuentra dónde usar tu tarjeta</p>
+      {!hideHeader && (
+        <div className="bg-gradient-to-r from-pluxee-700 to-pluxee-500 text-white shadow-lg">
+          <div className="max-w-7xl mx-auto px-4 py-6">
+            <div className="flex items-center justify-between flex-wrap gap-3">
+              <div className="flex items-center gap-3">
+                <HeaderLogo />
+                <div>
+                  <h1 className="text-3xl font-bold">Junapedia</h1>
+                  <p className="text-pluxee-100 mt-1">Encuentra dónde usar tu tarjeta</p>
+                </div>
               </div>
+              <div />
             </div>
-            <div />
           </div>
         </div>
-      </div>
+      )}
 
       {/* Firestore-specific warning removed — app operates Supabase-only */}
 
@@ -380,156 +480,115 @@ const PluxeeGuide = () => {
           </div>
         </div>
 
-        <div className="bg-white rounded-xl shadow-md p-6 mb-6">
-          <div className="flex flex-col md:flex-row gap-4">
-            <div className="flex-1 relative">
-              <Search className="absolute left-3 top-3 text-gray-400" size={20} />
-              <input
-                type="text"
-                placeholder="Buscar por nombre o ubicación..."
-                value={searchTerm}
-                onChange={(e) => setSearchTerm(e.target.value)}
-                className="w-full pl-10 pr-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-pluxee-500 focus:border-transparent"
-              />
-            </div>
-            <select
-              value={selectedCategory}
-              onChange={(e) => setSelectedCategory(e.target.value)}
-              className="px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-pluxee-500 focus:border-transparent"
-            >
-              <option value="all">Todas las categorías</option>
-              {activeTab === 'restaurants' ? (
-                <>
-                  <option value="Comida Rápida">Comida Rápida</option>
-                  <option value="Restaurante">Restaurante</option>
-                  <option value="Cafetería">Cafetería</option>
-                  <option value="Panadería">Panadería</option>
-                </>
-              ) : (
-                <option value="Supermercado">Supermercado</option>
-              )}
-            </select>
-          </div>
-        </div>
-
-        {/* Mensaje de error global */}
-        {errorMessage && (
-          <div className="mb-6 p-4 border border-red-200 bg-red-50 text-red-700 rounded-lg text-sm">
-            {errorMessage}
-          </div>
-        )}
-
-        <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
-          {groupedDisplay.map(item => {
-            if (item.type === 'single') {
-              const store = item.store;
-              const displayName = item.name || store.name;
-              const token = findFranchiseKey(displayName || '', []);
-              return (
-                <div
-                  key={store.id}
-                  className="bg-white rounded-xl shadow-md hover:shadow-xl transition cursor-pointer overflow-hidden"
-                  onClick={() => setSelectedStore(store)}
-                >
-                  <div className="bg-gradient-to-r from-pluxee-600 to-pluxee-400 text-white px-4 py-3">
-                    <div className="flex items-start justify-between">
-                      <div className="flex-1">
-                        <h3 className="font-bold text-lg">{displayName}</h3>
-                        <span className="text-xs bg-white/20 px-2 py-1 rounded-full inline-block mt-1">
-                          {store.category}
-                        </span>
-                      </div>
-                      <button
-                        onClick={(e) => { e.stopPropagation(); openWebsite(displayName, token); }}
-                        title="Abrir sitio web"
-                        className="text-white/90 hover:text-white"
-                      >
-                        <Globe size={22} />
-                      </button>
-                    </div>
+        <div className="grid grid-cols-1 md:grid-cols-4 gap-6 items-start">
+          <aside className="md:col-span-1">
+                <Filters
+                  activeTab={activeTab}
+                  selectedCategory={selectedCategory}
+                  onCategoryChange={(cat) => setSelectedCategory(cat)}
+                  communes={comunas}
+                  selectedComuna={selectedComuna}
+                  onComunaChange={(c) => setSelectedComuna(c)}
+                />
+          </aside>
+          <div className="md:col-span-3">
+            <div className="bg-white rounded-xl shadow-md p-6 mb-6">
+              <div className="flex flex-col gap-4">
+                {typeof onSearchTermChange !== 'function' && (
+                  <div className="relative">
+                    <Search className="absolute left-3 top-3 text-gray-400" size={20} />
+                    <input
+                      type="text"
+                      placeholder="Buscar por nombre o ubicación..."
+                      value={controlledSearch ?? searchTerm}
+                      onChange={(e) => setSearchTerm(e.target.value)}
+                      className="w-full pl-10 pr-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-pluxee-500 focus:border-transparent"
+                    />
                   </div>
-                  <div className="p-4">
-                    <div className="flex items-start gap-2 text-gray-600 mb-2">
-                      <MapPin size={16} className="mt-1 flex-shrink-0" />
-                      <span className="text-sm">{store.address}</span>
-                    </div>
-                    <div className="flex items-center gap-2 text-gray-600">
-                      <DollarSign size={16} />
-                      <span className="text-sm text-pluxee-700">{store.menuItems?.length || 0} productos</span>
-                    </div>
-                    {/* Open in Google Maps button with address as label */}
-                    {store.address && (
-                      <div className="mt-3">
-                        <Button
-                          variant="outline"
-                          onClick={(e) => { e.stopPropagation(); openInGoogleMaps(store.address); }}
-                          className="w-full justify-start"
-                          title="Abrir en Google Maps"
-                        >
-                          📍 {store.address}
-                        </Button>
-                      </div>
-                    )}
-                    <div className="mt-2">
-                      <Button
-                        variant="outline"
-                        onClick={(e) => { e.stopPropagation(); openWebsite(displayName, token); }}
-                        className="w-full justify-start gap-2"
-                        title="Abrir sitio web"
-                      >
-                        <Globe size={16} />
-                        <span>Sitio web</span>
-                      </Button>
-                    </div>
-                  </div>
-                </div>
-              );
-            }
-            // group
-            const grp = item;
-            const token = grp.key;
-            return (
-              <div
-                key={`group-${grp.key}`}
-                className="bg-white rounded-xl shadow-md hover:shadow-xl transition cursor-pointer overflow-hidden border-2 border-dashed"
-                onClick={() => setSelectedGroup(grp)}
-              >
-                <div className="bg-gradient-to-r from-pluxee-600 to-pluxee-400 text-white px-4 py-3">
-                  <div className="flex items-start justify-between">
-                    <div className="flex-1">
-                      <h3 className="font-bold text-lg">{grp.name} <span className="text-sm font-normal">({grp.count})</span></h3>
-                      <span className="text-xs bg-white/20 px-2 py-1 rounded-full inline-block mt-1">Grupo</span>
-                    </div>
-                      <button
-                        onClick={(e) => { e.stopPropagation(); openWebsite(grp.name, token); }}
-                        title="Abrir sitio web de la franquicia"
-                        className="text-white/90 hover:text-white"
-                      >
-                        <Globe size={22} />
-                      </button>
-                  </div>
-                </div>
-                <div className="p-4">
-                  <div className="flex items-start gap-2 text-gray-600 mb-2">
-                    <MapPin size={16} className="mt-1 flex-shrink-0" />
-                    <span className="text-sm">{(grp.addresses && grp.addresses[0]) || ''}</span>
-                  </div>
-                  <div className="text-sm text-gray-600">Contiene {grp.count} locales. Haz clic para ver miembros.</div>
-                </div>
+                )}
               </div>
-            );
-          })}
-        </div>
+            </div>
 
-        {filteredStores.length === 0 && (
-          <div className="text-center py-12">
-            <StoreIcon size={48} className="mx-auto text-gray-400 mb-4" />
-            <p className="text-gray-600 text-lg">
-              No se encontraron {activeTab === 'restaurants' ? 'restaurantes' : 'supermercados'}
-            </p>
-            
+            {/* Mensaje de error global */}
+            {errorMessage && (
+              <div className="mb-6 p-4 border border-red-200 bg-red-50 text-red-700 rounded-lg text-sm">
+                {errorMessage}
+              </div>
+            )}
+
+            {/* Singles rendered via v0 StoreGrid */}
+            {(() => {
+              const singles = groupedDisplay.filter((g: any) => g.type === 'single').map((g: any) => g.store);
+              const storesForGrid = singles.map((s: any) => ({
+                id: s.id,
+                name: s.name,
+                category: s.category,
+                address: s.address,
+                image: undefined,
+                logoCandidates: buildLogoCandidates(s.name, s.category),
+                hours: '',
+                description: computeStoreDescription(s)
+              }));
+              return (
+                <StoreGrid
+                  stores={storesForGrid}
+                  searchQuery={controlledSearch ?? searchTerm}
+                  selectedCategory={selectedCategory}
+                  onOpenStore={(s) => {
+                    const found = singles.find((x: any) => x.id === s.id);
+                    if (found) setSelectedStore(found);
+                  }}
+                  onVisit={(s) => {
+                    const token = findFranchiseKey(s.name || '', []);
+                    openWebsite(s.name, token);
+                  }}
+                  onOpenMaps={(s) => {
+                    if (s.address) openInGoogleMaps(s.address);
+                  }}
+                />
+              );
+            })()}
+
+            {/* Franchises rendered using v0 StoreCard styling (use same column sizes as singles) */}
+            <div className="grid gap-6 grid-cols-1 md:grid-cols-2 lg:grid-cols-2 mt-6">
+              {groupedDisplay.filter((g: any) => g.type === 'group').map((grp: any) => {
+                const firstAddress = (grp.addresses && grp.addresses[0]) || '';
+                const token = grp.key;
+                // determine dominant category from members (fallback to 'Restaurante')
+                const catCount: Record<string, number> = {};
+                (grp.members || []).forEach((m: any) => {
+                  const c = (m.category || 'Restaurante');
+                  catCount[c] = (catCount[c] || 0) + 1;
+                });
+                const dominantCategory = Object.keys(catCount).sort((a,b) => (catCount[b]||0) - (catCount[a]||0))[0] || 'Restaurante';
+                return (
+                  <StoreCard
+                    key={`group-${grp.key}`}
+                    id={`group-${grp.key}`}
+                    name={grp.name}
+                    category={dominantCategory}
+                    floor={firstAddress}
+                    logoCandidates={buildLogoCandidates(grp.name, dominantCategory)}
+                    description={`${grp.count} locales`}
+                    onClick={() => setSelectedGroup(grp)}
+                    onVisit={() => openWebsite(grp.name, token)}
+                    onOpenMaps={() => firstAddress && openInGoogleMaps(firstAddress)}
+                  />
+                );
+              })}
+            </div>
+
+            {filteredStores.length === 0 && (
+              <div className="text-center py-12">
+                <StoreIcon size={48} className="mx-auto text-gray-400 mb-4" />
+                <p className="text-gray-600 text-lg">
+                  No se encontraron {activeTab === 'restaurants' ? 'restaurantes' : 'supermercados'}
+                </p>
+                
+              </div>
+            )}
           </div>
-        )}
+        </div>
       </div>
 
       {selectedStore && (
@@ -572,6 +631,19 @@ const HeaderLogo = () => {
 
 
 const StoreDetailModal = ({ store, onClose }) => {
+  const tokenForStore = findFranchiseKey(store.name || '', []);
+  const isFranchiseStore = !!tokenForStore;
+  const catNorm = normalizeText(store.category || '');
+  let purchaseHint = '';
+  if (/supermercad|minimarket|puntos verdes|minimarket/.test(catNorm)) {
+    purchaseHint = 'Productos de 2 o menos Sellos';
+  } else if (/(restaurante|restaurantes|casino|casinos)/.test(catNorm) && !isFranchiseStore && !/patio/.test(catNorm)) {
+    purchaseHint = 'Diversos productos del Menú del Local';
+  }
+  // Fallback for categories not covered above
+  if (!purchaseHint) {
+    purchaseHint = 'menú especial especifico';
+  }
   return (
     <div className="fixed inset-0 bg-black/50 flex items-center justify-center p-4 z-50" onClick={onClose}>
       <div className="bg-white rounded-xl max-w-2xl w-full max-h-[90vh] overflow-y-auto" onClick={(e) => e.stopPropagation()}>
@@ -637,6 +709,12 @@ const StoreDetailModal = ({ store, onClose }) => {
               </div>
             </div>
           </div>
+          {purchaseHint && (
+            <div className="mb-6 p-4 bg-pluxee-50 border border-pluxee-100 rounded-lg text-sm text-gray-800">
+              <div className="font-semibold">¿Qué puedes comprar?</div>
+              <div className="mt-1">{purchaseHint}</div>
+            </div>
+          )}
           {store.menuItems && store.menuItems.length > 0 && (
             <div>
               <h3 className="text-xl font-bold mb-4 text-gray-800">Menú / Productos</h3>
@@ -678,8 +756,8 @@ const GroupDetailModal = ({ group, onClose, onOpenStore }) => {
         <div className="bg-gradient-to-r from-pluxee-600 to-pluxee-400 text-white p-6">
           <div className="flex items-start justify-between">
             <div>
-              <h2 className="text-2xl font-bold">{group.name} — Grupo ({group.count})</h2>
-              <span className="text-sm bg-white/20 px-3 py-1 rounded-full inline-block mt-2">Grupo consolidado</span>
+              <h2 className="text-2xl font-bold">{group.name} — Franquicia ({group.count})</h2>
+              <span className="text-sm bg-white/20 px-3 py-1 rounded-full inline-block mt-2">Franquicia consolidada</span>
             </div>
             <div className="flex items-center gap-2">
               <button
@@ -724,7 +802,7 @@ const GroupDetailModal = ({ group, onClose, onOpenStore }) => {
           </div>
 
           <div>
-            <h3 className="font-semibold">Miembros del grupo</h3>
+            <h3 className="font-semibold">Locales de la franquicia</h3>
             <div className="space-y-3 mt-3">
               {group.members.map(m => (
                 <div key={m.id} className="p-3 border rounded hover:bg-gray-50">
@@ -735,6 +813,14 @@ const GroupDetailModal = ({ group, onClose, onOpenStore }) => {
                     </div>
                     <div className="flex gap-2">
                       <button onClick={() => onOpenStore(m)} className="text-pluxee-700 underline">Abrir</button>
+                      <button
+                        onClick={(e) => { e.stopPropagation(); openWebsite(m.name, findFranchiseKey(m.name || '', [])); }}
+                        className="text-pluxee-700 underline inline-flex items-center gap-1"
+                        title="Abrir sitio web"
+                      >
+                        <Globe size={16} />
+                        <span>Sitio web</span>
+                      </button>
                     </div>
                   </div>
                 </div>

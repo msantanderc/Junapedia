@@ -6,6 +6,7 @@ export default {
     // explicitly include root TSX files and the src folder; avoid scanning node_modules
     './pluxee-junaeb-guide.tsx',
     './components/**/*.{ts,tsx}',
+    './types/**/*.{ts,tsx}',
     './src/**/*.{js,jsx,ts,tsx}',
   ],
   theme: {
