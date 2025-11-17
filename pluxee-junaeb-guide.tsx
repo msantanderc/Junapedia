@@ -212,6 +212,7 @@ const PluxeeGuide = () => {
   const [selectedStore, setSelectedStore] = useState<CanonicalStore | null>(null);
   const [activeTab, setActiveTab] = useState<'restaurants' | 'supermarkets'>('restaurants');
   const [loading, setLoading] = useState<boolean>(true);
+  const [errorMessage, setErrorMessage] = useState<string>('');
   // Firestore access state removed; app uses Supabase-only
   const prevIdsRef = React.useRef<string[]>([]);
 
@@ -227,8 +228,8 @@ const PluxeeGuide = () => {
 
   const loadStores = async (): Promise<void> => {
     setLoading(true);
+    setErrorMessage('');
     try {
-      // Use the shared supabase helper. It auto-initializes from Vite env if available.
       try {
         const fb = await import('./src/supabase');
         const rows = await fb.fetchStoresFromSupabase();
@@ -247,20 +248,25 @@ const PluxeeGuide = () => {
           prevIdsRef.current = canonical.map((c: any) => c.id);
           setLoading(false);
           return;
+        } else {
+          setErrorMessage('La respuesta de Supabase no contenía datos.');
         }
-      } catch (err) {
+      } catch (err: any) {
         console.error('Error fetching from Supabase:', err);
         setStores([]);
         prevIdsRef.current = [];
+        if (String(err?.message || '').includes('not initialized')) {
+          setErrorMessage('Supabase no está configurado. Falta VITE_SUPABASE_URL o VITE_SUPABASE_ANON_KEY.');
+        } else {
+          setErrorMessage('No se pudo obtener datos de Supabase.');
+        }
         setLoading(false);
         return;
       }
-      // Supabase-only mode: no Firestore fallback. If Supabase fetch failed above, the function already returned.
     } catch (error: any) {
-      const msg = error?.message || String(error);
-      console.error('loadStores: final caught error, auth/status unknown:', msg, error);
       console.error('Error loading stores:', error);
       setStores([]);
+      if (!errorMessage) setErrorMessage('Error inesperado al cargar locales.');
     } finally {
       setLoading(false);
     }
@@ -406,7 +412,12 @@ const PluxeeGuide = () => {
           </div>
         </div>
 
-        {/* Debug panel removed */}
+        {/* Mensaje de error global */}
+        {errorMessage && (
+          <div className="mb-6 p-4 border border-red-200 bg-red-50 text-red-700 rounded-lg text-sm">
+            {errorMessage}
+          </div>
+        )}
 
         <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
           {groupedDisplay.map(item => {
