@@ -445,11 +445,12 @@ const PluxeeGuide = ({ hideHeader = false, searchTerm: controlledSearch, onSearc
           <div className="max-w-7xl mx-auto px-4 py-6">
             <div className="flex items-center justify-between flex-wrap gap-3">
               <div className="flex items-center gap-3">
-                <HeaderLogo />
-                <div>
-                  <h1 className="text-3xl font-bold">Junapedia</h1>
-                  <p className="text-pluxee-100 mt-1">Encuentra dónde usar tu tarjeta</p>
-                </div>
+                {/* Render the project logo instead of text header */}
+                <img
+                  src={`${import.meta.env.BASE_URL || '/'}logo.png`}
+                  alt="Junapedia"
+                  className="h-12 md:h-16 w-auto"
+                />
               </div>
               <div />
             </div>
