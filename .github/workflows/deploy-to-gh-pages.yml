@@ -29,5 +29,6 @@ jobs:
         with:
           github_token: ${{ secrets.GITHUB_TOKEN }}
           publish_dir: ./dist
+          destination_dir: docs
           # keep history on gh-pages for easier rollbacks
           keep_files: false
