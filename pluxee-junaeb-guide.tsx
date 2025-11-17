@@ -449,7 +449,7 @@ const PluxeeGuide = ({ hideHeader = false, searchTerm: controlledSearch, onSearc
                 <img
                   src={`${import.meta.env.BASE_URL || '/'}logo.png`}
                   alt="Junapedia"
-                  className="h-12 md:h-16 w-auto"
+                  className="h-10 md:h-12 lg:h-14 w-auto object-contain"
                 />
               </div>
               <div />
