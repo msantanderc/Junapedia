@@ -24,6 +24,12 @@ jobs:
         run: |
           npm run build
 
+      - name: Disable Jekyll for Pages
+        run: |
+          if [ -d "dist" ]; then
+            echo "" > dist/.nojekyll
+          fi
+
       - name: Deploy to gh-pages
         uses: peaceiris/actions-gh-pages@v3
         with:
