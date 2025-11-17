@@ -1,0 +1,42 @@
+{
+  "name": "pluxee-junaeb-guide",
+  "version": "1.0.0",
+  "description": "Guía de locales que aceptan Pluxee Junaeb",
+  "type": "module",
+  "scripts": {
+    "dev": "vite",
+    "build": "vite build",
+    "preview": "vite preview",
+    "start:server": "node server/index.js",
+    "dev:all": "concurrently \"npm:dev\" \"npm:start:server\""
+  },
+  "dependencies": {
+    "@supabase/supabase-js": "^2.81.1",
+    "cloudinary": "^2.8.0",
+    "csv-parse": "^6.0.8",
+    "firebase-admin": "^13.6.0",
+    "class-variance-authority": "^0.7.0",
+    "clsx": "^2.1.1",
+    "@radix-ui/react-slot": "^1.1.0",
+    "iconv-lite": "^0.6.3",
+    "lucide-react": "^0.262.0",
+    "puppeteer": "^24.30.0",
+    "puppeteer-core": "^24.30.0",
+    "react": "^18.3.1",
+    "react-dom": "^18.3.1",
+    "tailwind-merge": "^2.5.3",
+    "string-similarity": "^4.0.4"
+  },
+  "devDependencies": {
+    "@types/node": "^24.10.1",
+    "@types/react": "^19.2.5",
+    "@types/react-dom": "^19.2.3",
+    "@vitejs/plugin-react": "^4.7.0",
+    "autoprefixer": "^10.4.22",
+    "postcss": "^8.5.6",
+    "tailwindcss-animate": "^1.0.7",
+    "tailwindcss": "^3.4.18",
+    "typescript": "^5.9.3",
+    "vite": "^5.4.21"
+  }
+}
