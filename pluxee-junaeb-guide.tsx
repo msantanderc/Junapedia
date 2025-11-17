@@ -82,9 +82,9 @@ const CATEGORY_LOGO_MAP: Record<string, string> = {
   'restaurantes': '/logos/restaurantes.svg',
   'casinos': '/logos/Casinos.svg',
   'minimarket': '/logos/MiniMarket.svg',
-  'patio de comida': '/logos/patio de comida.svg',
-  'puntos verdes': '/logos/puntos verdes.svg',
-  'puntos azules': '/logos/puntos azules.svg',
+  'patio de comida': '/logos/patio-de-comida.svg',
+  'puntos verdes': '/logos/puntos-verdes.svg',
+  'puntos azules': '/logos/puntos-azules.svg',
   'supermercado': '/logos/supermercado.svg',
   'supermercados': '/logos/supermercado.svg'
 };
@@ -112,7 +112,11 @@ function buildLogoCandidates(name: string, category?: string): string[] {
     const mapped = CATEGORY_LOGO_MAP[key];
     if (mapped) cands.push(mapped);
   }
-  return Array.from(new Set(cands));
+  // Always include a generic placeholder as last resort
+  cands.push('/logo.svg', '/logo.png');
+  // Deduplicate and URI-encode candidate paths so filenames with spaces work correctly
+  const uniq = Array.from(new Set(cands));
+  return uniq.map(p => encodeURI(p));
 }
 
 // Logo background removed as requested
