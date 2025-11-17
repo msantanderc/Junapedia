@@ -19,8 +19,15 @@ jobs:
         with:
           node-version: 20
           cache: npm
-      - name: Install dependencies
-        run: npm ci
+      - name: Install dependencies (lock-aware)
+        run: |
+          if [ -f package-lock.json ]; then
+            echo "Lock file found: using npm ci"
+            npm ci
+          else
+            echo "No lock file: using npm install"
+            npm install
+          fi
       - name: Build
         run: npm run build
       - name: Deploy to gh-pages
